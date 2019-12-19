@@ -30,7 +30,7 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f } # The support directory is not autoloaded by default. To enable this, open the rails helper and comment out the support directory auto-loading
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -42,6 +42,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include RequestSpecHelper, type: :request # include it as shared module for all request specs in the RSpec configuration block.
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
