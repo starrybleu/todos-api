@@ -41,7 +41,7 @@ end
 group :test do
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'shoulda-matchers', require: true
+  gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
 
